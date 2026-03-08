@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 
-function Signup() {
+import AuthContext from './AuthProvider'
+
+export function Signup() {
     const [username, setUsername] = useState();
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -12,11 +14,20 @@ function Signup() {
         setShow(!show);
     }
 
+    const { signup } = useContext(AuthContext);
+
+    const handleSignup = (e) => {
+        e.preventDefult();
+        signup(email, password);
+        console.log(email, password);
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white shadow-lg rounded-xl p-8 w-[450px]">
                 <h1 className="text-2xl font-bold text-center mb-6">Signup</h1>
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={handleSignup}>
+                    <div className="flex flex-col" style={{ display: "none" }}> <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded"> Email is already registered. </small> </div>
                     <div className="flex flex-col">
                         <label htmlFor="username" className="mb-1 text-sm font-medium">
                             Username

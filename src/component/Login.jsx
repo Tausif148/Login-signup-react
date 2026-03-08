@@ -16,6 +16,12 @@ function Login() {
             <div className="bg-white shadow-lg rounded-xl p-8 w-[450px]">
                 <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
                 <form className="flex flex-col gap-4">
+                    <div className="flex flex-col" style={{ display: "none" }}>
+                        <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">
+                            Email is not registered. Please sign up first.
+                        </small>
+                    </div>
+
                     <div className="flex flex-col">
                         <label htmlFor="email" className="mb-1 text-sm font-medium">
                             Email
