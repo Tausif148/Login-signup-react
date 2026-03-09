@@ -1,4 +1,4 @@
-export const userSignup = ({ email, password }) => {
+export const userSignup = ({ username, email, password }) => {
     let users = localStorage.getItem('users') || '[]';
     let isExist = false;
 
@@ -11,7 +11,7 @@ export const userSignup = ({ email, password }) => {
         return false;
     }
 
-    users.push({ email, password });
+    users.push({ username, email, password });
 
     localStorage.setItem('users', JSON.stringify(users));
     return true;

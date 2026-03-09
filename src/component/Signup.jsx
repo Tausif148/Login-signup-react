@@ -1,25 +1,24 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 
-import AuthContext from './AuthProvider'
+import { AuthContext } from './AuthProvider'
 
 export function Signup() {
-    const [username, setUsername] = useState();
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const [show, setShow] = useState(false);
 
     function displayPassword() {
         setShow(!show);
     }
-
     const { signup } = useContext(AuthContext);
 
     const handleSignup = (e) => {
-        e.preventDefult();
-        signup(email, password);
-        console.log(email, password);
+        e.preventDefault();
+        signup({ username, email, password });
+        // console.log("Signup:"+ email, password);
     }
 
     return (
