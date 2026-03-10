@@ -1,42 +1,55 @@
 import { createContext } from "react";
 import { useState } from "react";
 
-import { userSignup } from '../apis/index.js';
+import { userSignup, userLogin } from '../apis/index.js';
+
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
-    const [error, setError] = useState('');
 
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+    // Signup functionality
     const signup = ({ username, email, password }) => {
-        console.log(`Auth:  ${username},  ${email},  ${password}`);
+        // console.log(`Auth:  ${username},  ${email},  ${password}`);
         const result = userSignup({ username, email, password });
 
         if (result.success) {
-            setError("");
+            setError('');
+            setSuccess(result.message);
         } else {
+            setSuccess('');
             setError(result.message);
         }
     }
 
-    const login = ({ email, password }) => {
-        console.log(`Auth:   ${email},  ${password}`);
-        // const result = userSignup({ email, password });
 
-        // if (result.success) {
-        //     setError("");
-        // } else {
-        //     setError(result.message);
-        // }
+    // Login functionality 
+    const login = ({ email, password }) => {
+        // console.log(`Auth:   ${email},  ${password}`);
+        const result = userLogin({ email, password });
+
+        if (result.success) {
+            setError("");
+            setSuccess(result.message);
+        } else {
+            setSuccess("");
+            setError(result.message);
+        }
     }
 
+
+    // Logout functionality
     const logout = () => {
 
     }
+
+
     return (
-        <AuthContext.Provider value={{ user, error, signup, login, logout }}>
+        <AuthContext.Provider value={{ user, error, success, signup, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

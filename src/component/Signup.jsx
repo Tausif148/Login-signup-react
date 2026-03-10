@@ -16,12 +16,12 @@ export function Signup() {
 
 
     // using context from here 
-    const { signup, error } = useContext(AuthContext);
+    const { signup, error, success } = useContext(AuthContext);
 
     const handleSignup = (e) => {
         e.preventDefault();
         // console.log("Signup:"+ email, password);
-        signup({ error, username, email, password });
+        signup({ error, success, username, email, password });
     }
 
     return (
@@ -29,7 +29,13 @@ export function Signup() {
             <div className="bg-white shadow-lg rounded-xl p-8 w-[450px]">
                 <h1 className="text-2xl font-bold text-center mb-6">Signup</h1>
                 <form className="flex flex-col gap-4" onSubmit={handleSignup}>
-
+                    {success && (
+                        <div className="flex flex-col">
+                            <small className="mb-1 text-sm font-medium text-green-700 bg-green-100 text-center p-1 rounded">
+                                {success}
+                            </small>
+                        </div>
+                    )}
                     {error && (
                         <div className="flex flex-col">
                             <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">

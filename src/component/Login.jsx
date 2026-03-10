@@ -16,12 +16,12 @@ function Login() {
     }
 
     // using context from here  
-    const { login, error } = useContext(AuthContext);
+    const { login, error, success } = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
         // console.log("Login:" + email, passsword);
-        login({ error, email, password });
+        login({ error, success, email, password });
     }
 
 
@@ -31,6 +31,13 @@ function Login() {
                 <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
                 <form className="flex flex-col gap-4" onSubmit={handleLogin}>
 
+                    {success && (
+                        <div className="flex flex-col">
+                            <small className="mb-1 text-sm font-medium text-green-700 bg-green-100 text-center p-1 rounded">
+                                {success}
+                            </small>
+                        </div>
+                    )}
                     {error && (
                         <div className="flex flex-col">
                             <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">
