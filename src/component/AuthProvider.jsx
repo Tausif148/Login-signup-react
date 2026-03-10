@@ -20,9 +20,13 @@ const AuthProvider = ({ children }) => {
         if (result.success) {
             setError('');
             setSuccess(result.message);
+            setUser(username, email,)
+            return true;
         } else {
             setSuccess('');
             setError(result.message);
+            setUser(result)
+            return false;
         }
     }
 
@@ -35,9 +39,13 @@ const AuthProvider = ({ children }) => {
         if (result.success) {
             setError("");
             setSuccess(result.message);
+            setUser(username, email,)
+            return true;
         } else {
             setSuccess("");
             setError(result.message);
+            setUser(result)
+            return false;
         }
     }
 

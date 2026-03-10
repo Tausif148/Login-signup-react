@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { AuthContext } from './AuthProvider'
 
@@ -17,11 +17,14 @@ function Login() {
 
     // using context from here  
     const { login, error, success } = useContext(AuthContext);
+    const nevigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         // console.log("Login:" + email, passsword);
-        login({ error, success, email, password });
+        if (login({ error, success, email, password })) {
+            nevigate('/profile');
+        }
     }
 
 
@@ -53,6 +56,7 @@ function Login() {
                         <input
                             type="email"
                             id="email"
+                            autoComplete="current-email"
                             placeholder="Enter Email"
                             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={email}
@@ -68,6 +72,7 @@ function Login() {
                         <input
                             type={show ? "text" : "password"}
                             id="password"
+                            autoComplete="current-password"
                             placeholder="Enter Password"
                             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={password}
@@ -87,8 +92,8 @@ function Login() {
                     >
                         Signup
                     </button>
-
-                    <p className="text-sm text-center mt-4">
+                    <hr />
+                    <p className="text-sm text-center">
                         Don't have an account? {''}
                         <Link
                             to="/signup"

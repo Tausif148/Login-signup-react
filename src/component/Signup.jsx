@@ -51,6 +51,7 @@ export function Signup() {
                         <input
                             type="text"
                             id="username"
+                            autoComplete="username"
                             placeholder="Enter Username"
                             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={username}
@@ -65,6 +66,7 @@ export function Signup() {
                         <input
                             type="email"
                             id="email"
+                            autoComplete="current-email"
                             placeholder="Enter Email"
                             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={email}
@@ -80,6 +82,7 @@ export function Signup() {
                         <input
                             type={show ? "text" : "password"}
                             id="password"
+                            autoComplete="new-password"
                             placeholder="Enter Password"
                             className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={password}
@@ -99,8 +102,8 @@ export function Signup() {
                     >
                         Signup
                     </button>
-
-                    <p className="text-sm text-center mt-4">
+<hr />
+                    <p className="text-sm text-center">
                         Already have an account? {''}
                         <Link
                             to="/"

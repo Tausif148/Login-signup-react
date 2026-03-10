@@ -8,7 +8,6 @@ export const userSignup = ({ username, email, password }) => {
 
     let users = localStorage.getItem('users') || '[]';
     users = JSON.parse(users);
-
     const isExist = users.find(item => item.email === email);
 
     if (isExist) {
@@ -25,6 +24,7 @@ export const userSignup = ({ username, email, password }) => {
 
 // Login authentication
 export const userLogin = ({ email, password }) => {
+    
     if (!email || !password) {
         return { success: false, message: "All fields are required" };
     }
@@ -37,7 +37,6 @@ export const userLogin = ({ email, password }) => {
 
     // convert string to array
     users = JSON.parse(users);
-
     const isExist = users.find(item => item.email === email);
 
     if (isExist && isExist.password === password) {
