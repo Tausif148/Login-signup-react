@@ -8,17 +8,20 @@ export function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // hide and show password
     const [show, setShow] = useState(false);
-
     function displayPassword() {
         setShow(!show);
     }
-    const { signup } = useContext(AuthContext);
+
+
+    // using context from here 
+    const { signup, error } = useContext(AuthContext);
 
     const handleSignup = (e) => {
         e.preventDefault();
-        signup({ username, email, password });
         // console.log("Signup:"+ email, password);
+        signup({ error, username, email, password });
     }
 
     return (
@@ -26,7 +29,15 @@ export function Signup() {
             <div className="bg-white shadow-lg rounded-xl p-8 w-[450px]">
                 <h1 className="text-2xl font-bold text-center mb-6">Signup</h1>
                 <form className="flex flex-col gap-4" onSubmit={handleSignup}>
-                    <div className="flex flex-col" style={{ display: "none" }}> <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded"> Email is already registered. </small> </div>
+
+                    {error && (
+                        <div className="flex flex-col">
+                            <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">
+                                {error}
+                            </small>
+                        </div>
+                    )}
+
                     <div className="flex flex-col">
                         <label htmlFor="username" className="mb-1 text-sm font-medium">
                             Username

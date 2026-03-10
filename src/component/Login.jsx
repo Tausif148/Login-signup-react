@@ -1,26 +1,43 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+
+import { AuthContext } from './AuthProvider'
+
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [show, setShow] = useState(false);
 
+    // hide and show password
+    const [show, setShow] = useState(false);
     function displayPassword() {
         setShow(!show);
     }
+
+    // using context from here  
+    const { login, error } = useContext(AuthContext);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        // console.log("Login:" + email, passsword);
+        login({ error, email, password });
+    }
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white shadow-lg rounded-xl p-8 w-[450px]">
                 <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
-                <form className="flex flex-col gap-4">
-                    <div className="flex flex-col" style={{ display: "none" }}>
-                        <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">
-                            Email is not registered. Please sign up first.
-                        </small>
-                    </div>
+                <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+
+                    {error && (
+                        <div className="flex flex-col">
+                            <small className="mb-1 text-sm font-medium text-red-600 bg-red-100 text-center p-1 rounded">
+                                {error}
+                            </small>
+                        </div>
+                    )}
 
                     <div className="flex flex-col">
                         <label htmlFor="email" className="mb-1 text-sm font-medium">
