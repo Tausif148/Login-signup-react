@@ -20,14 +20,14 @@ function Profile() {
                 <h1 className="text-lg">Wellcome to Your Profile, {user?.username} </h1>
                 <div>
                     <Link
-                        to="/profile/dashboard"
+                        to="/Login-signup-react/dashboard"
                         className="text-blue-500 font-medium hover:underline text-center block"
                     >
                         Dashboard
                     </Link>
 
                     <Link
-                        to="/profile/settings"
+                        to="/Login-signup-react/settings"
                         className="text-blue-500 font-medium hover:underline text-center block"
                     >
                         Settings

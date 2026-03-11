@@ -21,9 +21,9 @@ const router = createBrowserRouter([
     {
         element: <AuthGaurd />,
         children: [
-            { path: "/profile", element: <Profile /> },
-            { path: "/profile/dashboard", element: <Dashboard /> },
-            { path: "/profile/settings", element: <Settings /> }
+            { path: "/Login-signup-react/profile", element: <Profile /> },
+            { path: "/Login-signup-react/dashboard", element: <Dashboard /> },
+            { path: "/Login-signup-react/settings", element: <Settings /> }
         ]
     }
 ]);

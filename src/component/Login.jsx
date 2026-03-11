@@ -23,7 +23,7 @@ function Login() {
         const result = login({ email, password });
 
         if (result) {
-            nevigate("/profile");
+            nevigate("/Login-signup-react/profile");
         }
     };
 
