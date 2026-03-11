@@ -8,7 +8,6 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
     // hide and show password
     const [show, setShow] = useState(false);
     function displayPassword() {
@@ -21,12 +20,12 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // console.log("Login:" + email, passsword);
-        if (login({ error, success, email, password })) {
-            nevigate('/profile');
-        }
-    }
+        const result = login({ email, password });
 
+        if (result) {
+            nevigate("/profile");
+        }
+    };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -80,17 +79,17 @@ function Login() {
                         />
                     </div>
                     <div className="flex gap-3 align-middle">
-                        <small htmlFor="password" className="text-sm">
+                        <label htmlFor="showpassword" className="text-sm">
                             Show password
-                        </small>
-                        <input onClick={displayPassword} type="checkbox" name="" id="" />
+                        </label>
+                        <input onClick={displayPassword} type="checkbox" name="" id="showpassword" />
                     </div>
 
                     <button
                         type="submit"
                         className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
                     >
-                        Signup
+                        Login
                     </button>
                     <hr />
                     <p className="text-sm text-center">

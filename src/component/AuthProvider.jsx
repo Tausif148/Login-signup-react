@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { userSignup, userLogin } from '../apis/index.js';
 
-
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -21,11 +20,19 @@ const AuthProvider = ({ children }) => {
             setError('');
             setSuccess(result.message);
             setUser(username, email,)
+            setTimeout(() => {
+                setSuccess("");
+                setError("");
+            }, 4000);
             return true;
         } else {
             setSuccess('');
-            setError(result.message);
             setUser(result)
+            setError(result.message);
+            setTimeout(() => {
+                setSuccess("");
+                setError("");
+            }, 4000);
             return false;
         }
     }
@@ -33,28 +40,27 @@ const AuthProvider = ({ children }) => {
 
     // Login functionality 
     const login = ({ email, password }) => {
-        // console.log(`Auth:   ${email},  ${password}`);
         const result = userLogin({ email, password });
 
         if (result.success) {
-            setError("");
-            setSuccess(result.message);
-            setUser(username, email,)
+            setUser(result.user);
             return true;
-        } else {
-            setSuccess("");
+        }
+        else {
             setError(result.message);
-            setUser(result)
+            setTimeout(() => {
+                setSuccess("");
+                setError("");
+            }, 4000);
             return false;
         }
-    }
-
+    };
 
     // Logout functionality
     const logout = () => {
-
-    }
-
+        localStorage.removeItem("loggedUser");
+        setUser(null);
+    };
 
     return (
         <AuthContext.Provider value={{ user, error, success, signup, login, logout }}>

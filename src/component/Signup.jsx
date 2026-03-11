@@ -90,10 +90,10 @@ export function Signup() {
                         />
                     </div>
                     <div className="flex gap-3 align-middle">
-                        <small htmlFor="password" className="text-sm">
+                        <label htmlFor="showpassword" className="text-sm">
                             Show password
-                        </small>
-                        <input onClick={displayPassword} type="checkbox" name="" id="" />
+                        </label>
+                        <input onClick={displayPassword} type="checkbox" name="" id="showpassword" />
                     </div>
 
                     <button
@@ -102,7 +102,7 @@ export function Signup() {
                     >
                         Signup
                     </button>
-<hr />
+                    <hr />
                     <p className="text-sm text-center">
                         Already have an account? {''}
                         <Link

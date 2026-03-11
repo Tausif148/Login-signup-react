@@ -1,15 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
 const AuthGaurd = () => {
-    return (
-        <div>
-            <Outlet />
-        </div>
-    );
+
+    const user = localStorage.getItem("loggedUser");
+
+    // if not logged in redirect to login
+    if (!user) {
+        return <Navigate to="/" replace />;
+    }
+
+    return <Outlet />;
 };
-
-
-
-
 
 export default AuthGaurd;

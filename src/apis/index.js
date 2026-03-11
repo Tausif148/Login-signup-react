@@ -1,7 +1,6 @@
 
 // Signup authentication 
 export const userSignup = ({ username, email, password }) => {
-
     if (!username || !email || !password) {
         return { success: false, message: "All fields are required" };
     }
@@ -24,24 +23,31 @@ export const userSignup = ({ username, email, password }) => {
 
 // Login authentication
 export const userLogin = ({ email, password }) => {
-    
     if (!email || !password) {
         return { success: false, message: "All fields are required" };
     }
 
     let users = localStorage.getItem("users");
-
     if (!users) {
         return { success: false, message: "No users found" };
     }
 
-    // convert string to array
     users = JSON.parse(users);
-    const isExist = users.find(item => item.email === email);
 
-    if (isExist && isExist.password === password) {
-        return { success: true, message: "Login successful" };
-    } else {
-        return { success: false, message: "Either email or password is incorrect" };
+    const isExist = users.find(user => user.email === email);
+    if (!isExist) {
+        return { success: false, message: "User not found" };
     }
+    if (isExist.password !== password) {
+        return { success: false, message: "Incorrect password" };
+    }
+
+    // store logged user
+    localStorage.setItem("loggedUser", JSON.stringify(isExist));
+
+    return {
+        success: true,
+        message: "Login successful",
+        user: isExist
+    };
 };
