@@ -95,7 +95,7 @@ function Login() {
                     <p className="text-sm text-center">
                         Don't have an account? {''}
                         <Link
-                            to="/signup"
+                            to="/Login-signup-react/signup"
                             className="text-blue-500 font-medium hover:underline"
                         >
                             Sigup

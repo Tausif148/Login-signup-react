@@ -11,7 +11,7 @@ function Profile() {
         e.preventDefault();
 
         logout();
-        navigate("/");
+        navigate("/Login-signup-react");
     }
 
     return (

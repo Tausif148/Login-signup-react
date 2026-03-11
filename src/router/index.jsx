@@ -9,11 +9,11 @@ import Settings from "../component/Settings";
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/Login-signup-react",
         element: <Login />
     },
     {
-        path: "/signup",
+        path: "/Login-signup-react/signup",
         element: <Signup />
     },
 
