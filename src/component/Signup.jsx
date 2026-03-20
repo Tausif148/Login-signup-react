@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 
-import { AuthContext } from './AuthProvider'
+import { AuthContext } from '../context/AuthProvider'
 
 export function Signup() {
     const [username, setUsername] = useState("");

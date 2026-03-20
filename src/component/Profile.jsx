@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
-import { AuthContext } from "./AuthProvider";
+import { AuthContext } from '../context/AuthProvider';
 
 function Profile() {
     const { user, logout } = useContext(AuthContext);
